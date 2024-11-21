@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+int main(void) {
+  printf("Insira o salario base: ");
+   int salario = 0;
+  scanf("%d", &salario);
+  if (salario < 1412){
+  printf("Valor inserido abaixo do salario minimo, nao e possivel prosseguir");
+  }
+  else{
+  printf("Insira o nível de pós-graduação\n");
+  printf("Para doutorado insira 1\n");
+  printf("Para mestrado insira 2\n");
+  printf("Para especialização insira 3\n");
+  int nivel = 0;
+  scanf("%d", &nivel);
+  float processo1 = 0;
+
+  if (nivel == 1)
+  {
+    processo1 = salario * 1.60;
+  }
+  else if (nivel == 2)
+  {
+    processo1 = salario * 1.40;
+  }
+  else {if (nivel == 3)
+  {
+    processo1 = salario * 1.20;
+  }}
+printf("escreva seu tempo de servico em anos: ");
+int tempo = 0;
+scanf("%i", &tempo);
+    float sobretempo = 0;
+if (tempo < 5)
+  {
+    sobretempo = (tempo/100.0) * salario;
+  }
+  else
+  {
+    sobretempo = (5/100.0) * salario;
+  }
+  float salariobruto = processo1 + sobretempo + 440;
+  printf(" salario bruto: %f", salariobruto);
+
+  float impostoderenda = 0;
+  if (salario < 2259.2)
+  {
+  impostoderenda = 0;
+  }
+  else if (salario < 2826.65){
+  impostoderenda = 7.5/100;
+  }
+  else if (salario < 3751.06){
+  impostoderenda = 15.0/100;
+  }
+  else if (salario < 4664.68){
+  impostoderenda = 22.5/100;
+  }
+  else {
+  impostoderenda = 27.5/100;
+  }
+  float iss = 5.0/100.0;
+  float descontosalarial = salario * (impostoderenda + iss);
+printf("\nTotal de descontos: %f", descontosalarial);
+    float salarioliquido = salariobruto - descontosalarial;
+    printf("\nSalario liquido: %f", salarioliquido);
+    return 0;
+  }
+}
