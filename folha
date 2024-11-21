@@ -1,70 +1,77 @@
 #include <stdio.h>
-
-int main(void) {
-  printf("Insira o salario base: ");
-   int salario = 0;
-  scanf("%d", &salario);
-  if (salario < 1412){
-  printf("Valor inserido abaixo do salario minimo, nao e possivel prosseguir");
-  }
-  else{
-  printf("Insira o nível de pós-graduação\n");
-  printf("Para doutorado insira 1\n");
-  printf("Para mestrado insira 2\n");
-  printf("Para especialização insira 3\n");
-  int nivel = 0;
-  scanf("%d", &nivel);
-  float processo1 = 0;
-
-  if (nivel == 1)
-  {
-    processo1 = salario * 1.60;
-  }
-  else if (nivel == 2)
-  {
-    processo1 = salario * 1.40;
-  }
-  else {if (nivel == 3)
-  {
-    processo1 = salario * 1.20;
-  }}
-printf("escreva seu tempo de servico em anos: ");
+int continuacao(float base);
+float inss = 0;
+float inss1 = 75.0/1000;
+float inss2 = 9.0/100;
+float inss3 = 12.0/100;
+float inss4 = 14.0/100;
 int tempo = 0;
-scanf("%i", &tempo);
-    float sobretempo = 0;
-if (tempo < 5)
+int main()
+{
+  printf("digite o salario base: ");
+  float base = 0.0;
+  scanf("%f", &base);
+  if (base < 1412.00)
   {
-    sobretempo = (tempo/100.0) * salario;
+    printf("valor abaixo do minimo\n");
   }
   else
+    continuacao(base);
+  return 0;
+}
+int continuacao(float base)
+{
+  if (base < 1412.00)
   {
-    sobretempo = (5/100.0) * salario;
+  inss = 75.0/1000;
   }
-  float salariobruto = processo1 + sobretempo + 440;
-  printf(" salario bruto: %f", salariobruto);
-
-  float impostoderenda = 0;
-  if (salario < 2259.2)
-  {
-  impostoderenda = 0;
+  else if (base < 2666.68){
+  inss = 9.0/100;
   }
-  else if (salario < 2826.65){
-  impostoderenda = 7.5/100;
-  }
-  else if (salario < 3751.06){
-  impostoderenda = 15.0/100;
-  }
-  else if (salario < 4664.68){
-  impostoderenda = 22.5/100;
+  else if (base < 4000.03){
+  inss = 12.0/100;
   }
   else {
-  impostoderenda = 27.5/100;
+  inss = 14.0/100;
   }
-  float iss = 5.0/100.0;
-  float descontosalarial = salario * (impostoderenda + iss);
-printf("\nTotal de descontos: %f", descontosalarial);
-    float salarioliquido = salariobruto - descontosalarial;
-    printf("\nSalario liquido: %f", salarioliquido);
-    return 0;
-  }
+
+printf("\ndigite a seguir o valor do seguro de vida: ");
+  float seguro = 0.0;
+  scanf("%f", &seguro);
+printf("\ndigite a seguir o valor do plano de saude: ");
+  float plano = 0.0;
+  scanf("%f", &plano);
+printf("\ndigite a seguir a soma dos auxílios, vales e beneficios corporativos(sem contar os anteriores): ");
+float vales = 0.0;
+scanf("%f", &vales);
+printf("\ndigite a seguir as horas extras pagas: ");
+float extra = 0.0;
+  scanf("%f", &extra);
+  printf("\ndigite o tempo de serviço em anos do funcionário: ");
+  scanf("%i", &tempo);
+      float extratempo = 0;
+  if (tempo < 5)
+    {
+      extratempo = (tempo/100.0) * base;
+    }
+    else
+    {
+      extratempo = (5/100.0) * base;
+    }
+  float fgts = 0.08;
+  float fgtsdemissao = 0.04;
+float brutus = base+vales+plano+seguro+extra+extratempo;
+float sat = 0.03;
+float ratfap = 0.04;
+float ferias = brutus/12 + (brutus/3)/12;
+float sistemaS = 0.033;
+float deztrez = brutus/12;
+float despesas = brutus*1.0+deztrez+ferias+brutus*inss*fgtsdemissao*sistemaS*sat*ratfap*fgts;
+float despesasfunfact = brutus*1.0+deztrez+ferias+brutus*fgtsdemissao*sistemaS*sat*ratfap*fgts;
+printf("\nO valor total de despesas com um funcionário, incluindo as reservas para despesas futuras, é: %f", despesas);
+printf("\nAs despesas quando o salário base for: \n Menor que 1412: %f \n Maior ou igual a 1412 e menor que 2666: %f \n Maior ou igual a 2666 e menor que 4000: %f \n Maior ou igual a 4000: %f", despesasfunfact*inss1,
+despesasfunfact*inss2,
+despesasfunfact*inss3,
+despesasfunfact*inss4);
+return 0;  
 }
