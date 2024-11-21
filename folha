@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-int main(void) {
+int publico(void) {
   printf("Insira o salario base: ");
    int salario = 0;
   scanf("%d", &salario);
@@ -67,4 +66,213 @@ printf("\nTotal de descontos: %f", descontosalarial);
     printf("\nSalario liquido: %f", salarioliquido);
     return 0;
   }
+  return 0;
+    }
+
+
+
+int clt()
+{
+printf("Digite seu salario base\n");
+  float Base = 0.0;
+  scanf("%f", &Base);
+  if (Base <= 1412.00)
+  {
+    printf("Valor abaixo do minimo");
+  }
+  else
+  {
+  float alimentacao = 0.0;
+  printf("Digite o valor do auxilio alimentacao\n");
+  scanf("%f", &alimentacao);
+    float transporte = 0.0;
+  printf("Digite o valor do auxilio transporte\n");
+  scanf("%f", &transporte);
+    float estudo = 0.0;
+  printf("Digite o valor do auxilio estudo\n");
+  scanf("%f", &estudo);
+    float creche = 0.0;
+    printf("Digite o valor do auxilio creche\n");
+    scanf("%f", &creche);
+    float saude = 0.0;
+    printf("Digite o valor do auxilio saude\n");
+    scanf("%f", &saude);
+    float segurovida = 0.0;
+    printf("Digite o valor do seguro de vida pago\n");
+    scanf("%f", &segurovida);
+  int filhos = 0;
+  printf("Você tem quantos filhos de até 14 anos ou dependente?\n");
+  scanf("%d", &filhos);
+  printf("Digite o quanto voce ganha por hora\n");
+  int Porhora = 0;
+  scanf("%d", &Porhora);
+  printf("Digite quantas horas extras você trabalhou esse mês\n");
+  int extra = 0;
+  scanf("%d", &extra);
+    printf("No mínimo, as horas extras são pagas a 1.5 vezes o valor da hora normal, se a taxa for a mesma, digite 1.5, se for maior, digite o valor da taxa no mesmo modelo\n");
+    float taxahora = 0.0;
+    scanf("%f", &taxahora);
+    if (taxahora < 1.5)
+    {
+      printf("Valor abaixo do minimo");
+    }
+    else
+    {
+      float impostoderenda = 0.0;
+  if (Base < 2259.2)
+  {
+  impostoderenda = 0;
+  }
+  else if (Base < 2826.65){
+  impostoderenda = 7.5/100;
+  }
+  else if (Base < 3751.06){
+  impostoderenda = 15.0/100;
+  }
+  else if (Base < 4664.68){
+  impostoderenda = 22.5/100;
+  }
+  else {
+  impostoderenda = 27.5/100;
+  }
+      float inss = 0.0;
+  if (Base < 1412.00)
+  {
+  inss = 75.0/1000;
+  }
+  else if (Base < 2666.68){
+  inss = 9.0/100;
+  }
+  else if (Base < 4000.03){
+  inss = 12.0/100;
+  }
+  else {
+  inss = 14.0/100;
+  }
+      float sindical = 0.0;
+    printf("Você autoriza o desconto da contribuicao sindical?Escreva 1 para sim, 2 para nao\n");
+    int K = 0;
+      scanf("%d", &K);
+      if(K == 1)
+    {
+      sindical = 1.0/30*Base;
+    }
+    else
+    {
+      sindical = 0.0;
+    }
+  float salariobruto = Base + 62.04*filhos + Porhora*extra*taxahora + alimentacao + transporte + estudo + creche + saude + segurovida;
+  float Baseextra = Porhora*extra*taxahora + Base;
+  float descontos = Baseextra*impostoderenda + Baseextra*inss;
+  float salarioliquido = salariobruto - descontos;
+   printf("__________________________________________________________________________________\n");
+  printf("Seu salario bruto é: %f\n", salariobruto);
+  printf("Seu salario liquido é %f:\n", salarioliquido);
+  printf("O total de desconto foi: %f e ", descontos);
+  printf("Ao final do ano, voce pagara contribuicao sindical no valor de %f\n", sindical);
+      }
+  }
+  return 0;
 }
+
+
+int empresa()
+{
+  printf("digite o salario base: ");
+  float base = 0.0;
+  scanf("%f", &base);
+  if (base < 1412.00)
+  {
+    printf("valor abaixo do minimo\n");
+    empresa();
+  }
+      float inss = 0.0;
+  if (base < 1412.00)
+  {
+  inss = 75.0/1000;
+  }
+  else if (base < 2666.68){
+  inss = 9.0/100;
+  }
+  else if (base < 4000.03){
+  inss = 12.0/100;
+  }
+  else {
+  inss = 14.0/100;
+  }
+
+printf("\ndigite a seguir o valor do seguro de vida: ");
+  float seguro = 0.0;
+  scanf("%f", &seguro);
+printf("\ndigite a seguir o valor do plano de saude: ");
+  float plano = 0.0;
+  scanf("%f", &plano);
+printf("\ndigite a seguir a soma dos auxílios, vales e beneficios corporativos(sem contar os anteriores): ");
+float vales = 0.0;
+scanf("%f", &vales);
+printf("\ndigite a seguir as horas extras pagas: ");
+float extra = 0.0;
+  scanf("%f", &extra);
+  printf("\ndigite o tempo de serviço em anos do funcionário: ");
+  int tempo = 0;
+  scanf("%i", &tempo);
+      float extratempo = 0;
+  if (tempo < 5)
+    {
+      extratempo = (tempo/100.0) * base;
+    }
+    else
+    {
+      extratempo = (5/100.0) * base;
+    }
+  float fgts = 0.08;
+  float fgtsdemissao = 0.04;
+float brutus = base+vales+plano+seguro+extra+extratempo;
+float sat = 0.03;
+float ratfap = 0.04;
+float ferias = brutus/12 + (brutus/3)/12;
+float sistemaS = 0.033;
+float deztrez = brutus/12;
+float despesas = brutus*1.0+deztrez+ferias+brutus*inss*fgtsdemissao*sistemaS*sat*ratfap*fgts;
+printf("\nO valor total de despesas com um funcionário, incluindo as reservas para despesas futuras, é: %f", despesas);
+return 0;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main(void)
+{
+  printf("Digite 1 para despesas de uma empresa, 2 para empregado clt e 3 para empregado publico\n");
+  int x = 0;
+  scanf("%d", &x);
+  if(x == 1)
+  {
+    empresa();
+  }
+  else if(x == 2)
+  {
+    clt();
+  }
+  else
+  {
+    publico();
+  }
+}
+Despesas da empresa Helder.txt
+Exibindo Despesas da empresa Helder.txt…
